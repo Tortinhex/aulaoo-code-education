@@ -30,7 +30,7 @@
             <div class="page-header">
                 <a class="btn btn-primary pull-right" href="index.php">Voltar</a>
                 <h1>
-                    <small>Cliente</small><?php echo $cliente->getNome() ?></h1>
+                    <small>Cliente </small><?php echo $cliente->getNome() ?></h1>
             </div>
             <div class="row">
                 <div class="col-md-2"><p>CPF:</p></div>
