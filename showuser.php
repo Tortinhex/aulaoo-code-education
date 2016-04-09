@@ -9,11 +9,17 @@
     }
 
 
-    if (!$cliente) {
-        echo '<div class="alert alert-danger" role="alert">Cliente não encontrado!!</div>';
+    if (!$cliente):
+        ?>
+        <div class="alert alert-danger" role="alert">
+            Cliente não encontrado!!
+            <a class="btn btn-danger pull-right" href="index.php">Voltar</a>
+        </div>
+
+        <?php
         include "layoutFoot.php";
         die;
-    }
+    endif;
 
     ?>
     <div class="panel panel-primary">
