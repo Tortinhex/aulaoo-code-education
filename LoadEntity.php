@@ -21,9 +21,28 @@ class LoadEntity implements LoadInterface
         // TODO: Implement load() method.
     }
 
-    public function listEntities()
+    /**
+     * Retorna a lista de entidades
+     * OBS: Se houver valor no parametro $order, a lista
+     * será ordenada baseada no ID
+     *
+     * @param string $order
+     * @return array
+     */
+    public function listEntities($order = "")
     {
-        return $this->list;
+        $lista = $this->list;
+
+        if (!empty($order)) {
+            if ("asc" == $order) {
+                ksort($lista);
+                return $lista;
+            } else {
+                krsort($lista);
+            }
+        }
+
+        return $lista;
     }
 
     public function findOneBy($key, $value)

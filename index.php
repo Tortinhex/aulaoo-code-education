@@ -1,9 +1,24 @@
 <?php
 include "layoutHead.php";
-$listaClientes = $loadCliente->listEntities();
+
+$order = "asc";
+$inputChecked = "";
+
+if ("desc" == $_GET["order"]) {
+    $order = "desc";
+    $inputChecked = "checked";
+}
+
+$listaClientes = $loadCliente->listEntities($order);
 ?>
 <div class="container">
     <h1>Lista de Clientes</h1>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" value="1" <?php echo $inputChecked ?> onclick="send(this)">
+            Inverter ordem
+        </label>
+    </div>
     <br>
     <table class="table table-striped table-bordered table-hover">
         <thead>
@@ -34,6 +49,14 @@ $listaClientes = $loadCliente->listEntities();
         </tbody>
     </table>
 </div>
+
+<script type="text/javascript">
+    function send(item) {
+        var param = (item.checked) ? "desc" : "asc";
+        document.location.href = "index.php?order=" + param;
+    }
+
+</script>
 
 <?php include "layoutFoot.php" ?>
 
