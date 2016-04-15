@@ -8,6 +8,6 @@
  */
 interface TipoClienteInterface
 {
-    public function setEnderecoCobranca($endereco);
+    public function setEnderecoCobranca(Endereco $endereco);
     public function getEnderecoCobranca();
 }
