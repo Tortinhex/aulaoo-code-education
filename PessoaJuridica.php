@@ -9,6 +9,7 @@
 class PessoaJuridica extends Cliente implements TipoClienteInterface, ClassificacaoClienteInterface
 {
     private $enderecoCobranca;
+    private $cnpj;
 
     public function __construct($data)
     {
@@ -33,6 +34,22 @@ class PessoaJuridica extends Cliente implements TipoClienteInterface, Classifica
     public function getClassificacao()
     {
         return $this->classificacao;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCnpj()
+    {
+        return $this->cnpj;
+    }
+
+    /**
+     * @param mixed $cnpj
+     */
+    public function setCnpj($cnpj)
+    {
+        $this->cnpj = $cnpj;
     }
     
 }
