@@ -6,9 +6,10 @@
  * Date: 14/04/16
  * Time: 21:46
  */
-class PessoaFisica extends Cliente implements TipoClienteInterface
+class PessoaFisica extends Cliente implements TipoClienteInterface, ClassificacaoClienteInterface
 {
     private $enderecoCobranca;
+    private $classificacao;
 
     public function __construct($data)
     {
@@ -24,5 +25,16 @@ class PessoaFisica extends Cliente implements TipoClienteInterface
     {
         return $this->enderecoCobranca;
     }
+
+    public function setClassificacao($classificacao)
+    {
+        $this->classificacao = $classificacao;
+    }
+
+    public function getClassificacao()
+    {
+        return $this->classificacao;
+    }
+
 
 }

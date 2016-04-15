@@ -6,7 +6,7 @@
  * Date: 14/04/16
  * Time: 21:47
  */
-class PessoaJuridica extends Cliente
+class PessoaJuridica extends Cliente implements TipoClienteInterface, ClassificacaoClienteInterface
 {
     private $enderecoCobranca;
 
@@ -24,4 +24,15 @@ class PessoaJuridica extends Cliente
     {
         return $this->enderecoCobranca;
     }
+
+    public function setClassificacao($classificacao)
+    {
+        $this->classificacao = $classificacao;
+    }
+
+    public function getClassificacao()
+    {
+        return $this->classificacao;
+    }
+    
 }
