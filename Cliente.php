@@ -4,6 +4,7 @@ class Cliente extends Pessoa
 {
     private $dtCadastro;
     private $status;
+    private $endereco;
 
     /**
      * Cliente constructor.
@@ -46,4 +47,19 @@ class Cliente extends Pessoa
         $this->status = $status;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getEndereco()
+    {
+        return $this->endereco;
+    }
+
+    /**
+     * @param mixed $endereco
+     */
+    public function setEndereco(Endereco $endereco)
+    {
+        $this->endereco = $endereco;
+    }
 }
