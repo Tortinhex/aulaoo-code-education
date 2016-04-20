@@ -1,15 +1,18 @@
 <?php
 include "layoutHead.php";
 
-$order = "asc";
-$inputChecked = "";
+$listaPessoaFisica = (new LoadPessoaFisica())->listEntities();
+$listaPessoaJuridica = (new LoadPessoaJuridica())->listEntities();
+$listaClientes = array_merge($listaPessoaFisica, $listaPessoaJuridica);
 
-if ("desc" == $_GET["order"]) {
-    $order = "desc";
+if (isset($_GET["order"]) and "desc" == $_GET["order"]) {
+    krsort($listaClientes);
     $inputChecked = "checked";
+}else{
+    ksort($listaClientes);
+    $inputChecked = "";
 }
 
-$listaClientes = $loadCliente->listEntities($order);
 ?>
 <div class="container">
     <h1>Lista de Clientes</h1>
@@ -23,9 +26,11 @@ $listaClientes = $loadCliente->listEntities($order);
     <table class="table table-striped table-bordered table-hover">
         <thead>
         <tr>
-            <th>ID</th>
+            <th>Ordem</th>
+            <th>Tipo Pessoa</th>
             <th>Nome</th>
             <th>CPF</th>
+            <th>CNPJ</th>
             <th>RG</th>
             <th>sexo</th>
             <th>Data Cadastro</th>
@@ -34,16 +39,27 @@ $listaClientes = $loadCliente->listEntities($order);
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($listaClientes as $cliente): ?>
+        <?php foreach ($listaClientes as $ordem => $cliente): ?>
+            <?php
+            $tipo = "fisica";
+            $cnpj = "";
+
+            if ($cliente instanceof PessoaJuridica) {
+                $tipo = "juridica";
+                $cnpj = $cliente->getCnpj();
+            }
+            ?>
             <tr>
-                <td><?php echo $cliente->getId() ?></td>
+                <td><?php echo ++$ordem ?></td>
+                <td><?php echo ucfirst($tipo) ?></td>
                 <td><?php echo $cliente->getNome() ?></td>
                 <td><?php echo $cliente->getCpf() ?></td>
+                <td><?php echo $cnpj ?></td>
                 <td><?php echo $cliente->getRg() ?></td>
                 <td><?php echo $cliente->getSexo() ?></td>
                 <td><?php echo $cliente->getDtcadastro() ?></td>
                 <td><?php echo $cliente->getStatus() ?></td>
-                <th><a href="showuser.php?id=<?php echo $cliente->getId() ?>">Visualizar</a></th>
+                <th><a href="showuser.php?id=<?php echo $cliente->getId() ?>&tipo=<?php echo $tipo ?>">Visualizar</a></th>
             </tr>
         <?php endforeach; ?>
         </tbody>

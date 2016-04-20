@@ -2,10 +2,14 @@
     <?php
     include "layoutHead.php";
 
-    $idCliente = $_GET["id"];
-    $cliente = null;
-    if ($idCliente and is_numeric($idCliente)) {
-        $cliente = $loadCliente->findOneBy("id", $idCliente);
+    $tipo = isset($_GET["tipo"]) ? $_GET["tipo"] : FALSE;
+    $id = isset($_GET["id"]) ? $_GET["id"] : FALSE;
+
+
+    if (is_string($tipo) and is_numeric($id)) {
+        $aux = ("fisica" == $tipo) ? new LoadPessoaFisica() : new LoadPessoaJuridica();
+        $tipo = ucfirst($tipo);
+        $cliente = $aux->findOneBy("id", $id);
     }
 
 
@@ -30,12 +34,28 @@
             <div class="page-header">
                 <a class="btn btn-primary pull-right" href="index.php">Voltar</a>
                 <h1>
-                    <small>Cliente </small><?php echo $cliente->getNome() ?></h1>
+                    <small>Cliente&nbsp;</small><?php echo $cliente->getNome() ?>
+                </h1>
             </div>
             <div class="row">
-                <div class="col-md-2"><p>CPF:</p></div>
-                <div class="col-md-10"><p class="lead"><?php echo $cliente->getCpf() ?></p></div>
+                <div class="col-md-2"><p>Importância:</p></div>
+                <div class="col-md-10"><p class="lead"><?php echo $cliente->getClassificacao() ?>&nbsp;Estrelas</p>
+                </div>
             </div>
+            <div class="row">
+                <div class="col-md-2"><p>Tipo:</p></div>
+                <div class="col-md-10"><p class="lead">Pessoa <?php echo $tipo ?></p></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"><p><?php echo ("Juridica" == $tipo) ? "CNPJ" : "CPF" ?>:</p></div>
+                <div class="col-md-10">
+                    <p class="lead">
+                        <?php echo ("Juridica" == $tipo) ? $cliente->getCnpj() : $cliente->getCpf() ?>
+                    </p>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-md-2"><p>RG:</p></div>
                 <div class="col-md-10"><p class="lead"><?php echo $cliente->getRg() ?></p></div>
@@ -52,6 +72,20 @@
                 <div class="col-md-2"><p>Status:</p></div>
                 <div class="col-md-10"><p class="lead"><?php echo $cliente->getStatus() ?></p></div>
             </div>
+            <?php
+            if ($cliente->getEndereco()): ?>
+                <div class="row">
+                    <div class="col-md-2"><p>Endereco:</p></div>
+                    <div class="col-md-10"><p class="lead"><?php echo $cliente->getEndereco() ?></p></div>
+                </div>
+
+            <?php endif; ?>
+            <?php if ($cliente->getEnderecoCobranca()): ?>
+                <div class="row">
+                    <div class="col-md-2"><p>Endereco de Cobrança:</p></div>
+                    <div class="col-md-10"><p class="lead"><?php echo $cliente->getEnderecoCobranca() ?></p></div>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>
