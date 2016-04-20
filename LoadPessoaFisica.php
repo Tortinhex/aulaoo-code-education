@@ -52,7 +52,7 @@ class LoadPessoaFisica extends LoadEntity
                 "status" => "ativo",
                 "classificacao" => 4,
                 "enderecoCobranca" => $loadEndereco->findOneBy("id", 3),
-                "endereco" => $loadEndereco->findOneBy("id", 4),
+                "endereco" => $loadEndereco->findOneBy("id", 3),
             ],
             [
                 "id" => 4,
@@ -63,7 +63,7 @@ class LoadPessoaFisica extends LoadEntity
                 "dtCadastro" => "20/01/2016",
                 "status" => "ativo",
                 "classificacao" => 5,
-                "enderecoCobranca" => $loadEndereco->findOneBy("id", 4),
+                "endereco" => $loadEndereco->findOneBy("id", 4),
             ],
             [
                 "id" => 5,
@@ -74,9 +74,10 @@ class LoadPessoaFisica extends LoadEntity
                 "dtCadastro" => "20/01/2016",
                 "status" => "ativo",
                 "classificacao" => 3,
-                "endereco" => $loadEndereco->findOneBy("id", 5),
+                "enderecoCobranca" => $loadEndereco->findOneBy("id", 5),
             ],
         ];
+
 
         foreach ($lista as $item){
             $entity = new PessoaFisica($item);

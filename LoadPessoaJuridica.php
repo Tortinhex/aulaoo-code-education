@@ -27,7 +27,7 @@ class LoadPessoaJuridica extends LoadEntity
                 "dtCadastro" => "20/01/2016",
                 "status" => "ativo",
                 "classificacao" => 2,
-                "enderecoCobranca" => $loadEndereco->findOneBy("id", 1),
+                "endereco" => $loadEndereco->findOneBy("id", 6),
             ],
             [
                 "id" => 2,
@@ -38,7 +38,7 @@ class LoadPessoaJuridica extends LoadEntity
                 "dtCadastro" => "20/01/2016",
                 "status" => "ativo",
                 "classificacao" => 3,
-                "endereco" => $loadEndereco->findOneBy("id", 2),
+                "endereco" => $loadEndereco->findOneBy("id", 7),
             ],
             [
                 "id" => 3,
@@ -49,7 +49,8 @@ class LoadPessoaJuridica extends LoadEntity
                 "dtCadastro" => "20/01/2016",
                 "status" => "ativo",
                 "classificacao" => 5,
-                "enderecoCobranca" => $loadEndereco->findOneBy("id", 3),
+                "endereco" => $loadEndereco->findOneBy("id", 8),
+                "enderecoCobranca" => $loadEndereco->findOneBy("id", 8),
             ],
             [
                 "id" => 4,
@@ -60,8 +61,8 @@ class LoadPessoaJuridica extends LoadEntity
                 "dtCadastro" => "20/01/2016",
                 "status" => "ativo",
                 "classificacao" => 4,
-                "enderecoCobranca" => $loadEndereco->findOneBy("id", 4),
-                "endereco" => $loadEndereco->findOneBy("id", 4),
+                "enderecoCobranca" => $loadEndereco->findOneBy("id", 9),
+                "endereco" => $loadEndereco->findOneBy("id", 9),
             ],
             [
                 "id" => 5,
@@ -72,7 +73,7 @@ class LoadPessoaJuridica extends LoadEntity
                 "dtCadastro" => "20/01/2016",
                 "status" => "ativo",
                 "classificacao" => 4,
-                "endereco" => $loadEndereco->findOneBy("id", 5),
+                "enderecoCobranca" => $loadEndereco->findOneBy("id", 10),
             ]
         ];
 
