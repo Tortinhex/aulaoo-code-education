@@ -16,7 +16,7 @@ class PessoaFisica extends Cliente implements TipoClienteInterface, Classificaca
         parent::__construct($data);
     }
 
-    public function setEnderecoCobranca(Endereco $endereco)
+    public function setEnderecoCobranca($endereco)
     {
         $this->enderecoCobranca = $endereco;
     }

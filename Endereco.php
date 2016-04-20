@@ -17,6 +17,15 @@ class Endereco implements EntityInterface
     private $estado;
     private $pais;
 
+    /**
+     * Pessoa constructor.
+     * @param $data
+     */
+    function __construct($data)
+    {
+        $this->hidrator($data);
+    }
+
     public function hidrator($data)
     {
         foreach ($data as $key => $value) {
@@ -26,6 +35,23 @@ class Endereco implements EntityInterface
             }
         }
     }
+
+    function __toString()
+    {
+        $logradouro = $this->getLogradouro();
+        $numero = $this->getNumero();
+        $complemento = $this->getComplemento();
+        $bairro = $this->getBairro();
+        $cidade = $this->getCidade();
+        $estado = $this->getEstado();
+        $pais = $this->getPais();
+
+        $text =  $logradouro . ", " . $numero;
+        $text .= ($complemento)? " (compl. " . $complemento . ") ":" ";
+        $text .= $bairro . ", " . $cidade . " - " . $estado . " - " . $pais;
+        return $text;
+    }
+
 
     /**
      * @return mixed
@@ -155,5 +181,5 @@ class Endereco implements EntityInterface
         $this->pais = $pais;
     }
 
-    
+
 }

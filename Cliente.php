@@ -58,7 +58,7 @@ class Cliente extends Pessoa
     /**
      * @param mixed $endereco
      */
-    public function setEndereco(Endereco $endereco)
+    public function setEndereco($endereco)
     {
         $this->endereco = $endereco;
     }
